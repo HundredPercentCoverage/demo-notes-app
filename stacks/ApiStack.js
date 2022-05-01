@@ -9,6 +9,7 @@ export default class ApiStack extends sst.Stack {
     const { table } = props;
 
     this.api = new sst.Api(this, "Api", {
+      defaultAuthorizationType: 'AWS_IAM',
       defaultFunctionProps: {
         environment: {
           TABLE_NAME: table.tableName,
@@ -19,7 +20,7 @@ export default class ApiStack extends sst.Stack {
         "GET    /notes/{id}": "src/get.main",
         "GET    /notes": "src/list.main",
         "PUT    /notes/{id}": "src/update.main",
-        "DELETE    /notes/{id}": "src/delete.main",
+        "DELETE /notes/{id}": "src/delete.main",
       },
     });
 
